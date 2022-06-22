@@ -1,0 +1,62 @@
+
+/* HOME CSS BEGIN */
+
+div{
+    margin-bottom: 10px;
+}
+
+
+.row {
+   
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+
+  a {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+ 
+   img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin:5px 7px;
+
+    max-width: 95%;
+    max-height: auto;
+  }
+
+.moviename{
+  color: rgb(24, 18, 3);
+}
+/* HOME CSS END */
+
+
+
+/* NAVMENU CSS BEGIN */
+#navigation{
+background-color:purple;
+}
+
+
+
+/* NAVMENU CSS END */
+
+
+
+/*VIDEO FILE RENDER CSS START*/
+
+.videofile {
+  text-align:center;
+}
+
+video {
+  width: 90%;
+  height: auto;
+}
+/*VIDEO FILE RENDER CSS FINISH*/
+

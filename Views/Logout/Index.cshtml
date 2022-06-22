@@ -1,0 +1,20 @@
+@model netchill.ViewModel.LoginVm
+@{
+    ViewData["Title"] = "Logout";
+}
+
+<form method="POST">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-12 col-lg-4 ">
+                <h4><b>Are you sure you want to Logout?</b></h4><br />
+                
+                <p> 
+                    <button class="btn btn-primary" asp-controller="Logout" asp-action="Logout">Yes</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-light ml-5 border-danger" asp-controller="Logout" asp-action="DontLogout">No</button>
+                </p>
+            </div> 
+        </div>
+    </div>
+</form>
+     

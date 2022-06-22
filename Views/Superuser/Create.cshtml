@@ -1,0 +1,281 @@
+@model netchill.ViewModel.EmployeeCreateViewModel
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<style>
+    /*image preview setter while uploading*/
+
+    #previewHolder {
+        width: 15%;
+        height: 35%
+    }
+</style>
+
+
+<div class="card bg-success text-white">
+    <div class="card-body">
+        <h3 class="card-title text-center">ADD MOVIE/SERIES</h3>
+
+        <form enctype="multipart/form-data" method="post" asp-action="Create">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+            <div class="row">
+
+
+                <div class="col-6">
+                    <h6><label asp-for="Name" class="col-form-label">Content Name:</label></h6>
+                    <div class="col-sm-10">
+                        <input type="text" asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="col-6">
+                    <h6><label asp-for="Availability_Starts" class="col-form-label">Availability Start:</label>
+                    </h6>
+                    <div class="col-sm-10">
+                        <input type="date" asp-for="Availability_Starts" class="form-control" />
+                        <span asp-validation-for="Availability_Starts" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="row ">
+
+                <div class="col-4">
+                    <h6><label asp-for="Year_of_Release" class="col-form-label">Year of Release</label></h6>
+                    <div class="col-sm-10">
+                        <input asp-for="Year_of_Release" class="form-control" />
+                        <span asp-validation-for="Year_of_Release" class="text-danger"></span>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-4">
+
+                    <h6> <label asp-for="Category" class="col-form-label">Category</label></h6>
+
+                    <select asp-for="Category" asp-validation-for="Category" class="form-control-sm">
+                        <option value="movie">Movie</option>
+                        <option value="series">Web Series</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-4">
+
+                    <h6> <label asp-for="IsFeatured" class="col-form-label">Featured?</label></h6>
+
+                    <select asp-for="IsFeatured" asp-validation-for="IsFeatured" class="form-control-sm">
+                        <option value='true'>True</option>
+                        <option value='false'>False</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-4">
+
+                    <h6> <label asp-for="IsUpcoming" class="col-form-label">Upcoming?</label></h6>
+
+                    <select asp-for="IsUpcoming" asp-validation-for="IsUpcoming" class="form-control-sm">
+                        <option value='true'>True</option>
+                        <option value='false'>False</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-4">
+
+                    <h6> <label asp-for="IsNewRelease" class="col-form-label">New Release?</label></h6>
+
+                    <select asp-for="IsNewRelease" asp-validation-for="IsNewRelease" class="form-control-sm">
+                        <option value='true'>True</option>
+                        <option value='false'>False</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-4">
+
+                    <h6> <label asp-for="genre" class="col-form-label">Genre</label></h6>
+
+                    <select asp-for="genre" asp-validation-for="genre" class="form-control-sm">
+                        <option value="action">Action</option>
+                        <option value="scifi">Sci-fi</option>
+                        <option value="documentaries">Documentaries</option>
+                        <option value="crime">Crime</option>
+                        <option value="romantic">Romantic</option>
+                        <option value="superheroes">Super Heroes</option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+            <div class="row mb-3">
+                <h6><label asp-for="Description" class="col-sm-2 col-form-label">Description</label></h6>
+                <div class="col-sm-10">
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="col">
+                <h6><label asp-for="Photo" class="col-sm-2 col-form-label">Movie Poster:</label></h6>
+
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input asp-for="Photo" id="filePhoto" class="custom-file-input" />
+                        <!--   <label class="custom-file-label" for="Photo"></label> -->
+                    </div>
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+
+                    <br /><br />
+                    <img id="previewHolder" alt="" />
+                </div>
+            </div>
+
+
+
+
+            <div class="col">
+                <h6><label asp-for="ContentFile" class="col-sm-2 col-form-label">Content file:</label></h6>
+
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input asp-for="ContentFile" class="custom-file-input" onChange="load(this)" />
+                        <!--  <label class="custom-file-label" for="customFile"></label> -->
+                    </div>
+                    <span asp-validation-for="ContentFile" class="text-danger"></span>
+
+                    <br />
+                    <br />
+                    <video width="320" height="240" controls id="videoid">
+
+                    </video>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="mt-4 row">
+                <div class="col-8 offset-2 row">
+                    <div class="col">
+                        <input data-bs-toggle="modal" data-bs-target="#myModal" type="submit" id="myWish"
+                            class="btn btn-info w-75" value="create" />
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </form>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div>
+                <input asp-for="Id" type="hidden" value=@UserManager.GetUserName(User)>
+            </div>
+
+        }
+
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Content Succesfully Added to Server
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+@{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+
+        //DISPLAY NAME ON SELCTION
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+
+        // IMAGE PREVIEW SCRIPT
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#previewHolder').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                $('#previewHolder').attr('src', '');
+            }
+        }
+
+        $("#filePhoto").change(function () {
+            readURL(this);
+        });
+
+
+        //VIDEO PREVIEW SCRIPT
+        const load = (e) => {
+            let url = URL.createObjectURL(e.files[0])
+            let video = document.querySelector("#videoid");
+            video.setAttribute("src", url)
+        }
+    </script>
+}
+}

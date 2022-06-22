@@ -1,0 +1,57 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "movieid": 1,
+      "id": 2
+    },
+    {
+      "movieid": 1,
+      "id": 3
+    },
+    {
+      "movieid": 1,
+      "id": 4
+    },
+    {
+      "movieid": 1,
+      "id": 5
+    },
+    {
+      "movieid": 1,
+      "id": 6
+    },
+    {
+      "movieid": 1,
+      "id": 7
+    },
+    {
+      "movieid": 1,
+      "id": 8
+    },
+    {
+      "movieid": 1,
+      "id": 9
+    },
+    {
+      "movieid": 1,
+      "id": 10
+    },
+    {
+      "movieid": 1,
+      "id": 11
+    },
+    {
+      "movieid": 1,
+      "id": 12
+    },
+    {
+      "movieid": 1,
+      "id": 13
+    }
+  ]
+}

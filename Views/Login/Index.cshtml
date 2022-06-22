@@ -1,0 +1,159 @@
+@model netchill.ViewModel.LoginVm
+@{ ViewData["Title"] = "Login"; }
+
+<link href="~/wwwroot/css/site.css" rel="stylesheet" />
+<link href="~/wwwroot/js/site.js" rel="script" />
+
+
+    <div class="container-fluid " id="whole">
+
+        <div class="row g-3">
+
+
+
+            <div class="col-md-3 ">
+                <div class="card">
+
+                    <div class="card-header"> <strong class="heading">LOGIN</strong> </div>
+                    <div class="card bg-light ">
+
+                        <div class="card-body">
+
+                            <form method="POST" class="form-horizontal" role="form">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                @*Email*@
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="Username"><b>Username</b></label>
+                                    <input type="text" asp-for="Username" class="form-control" />
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </div>
+
+                                @*Password*@
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="Password"><b>Password</b><br /></label>
+                                    <input type="password" asp-for="Password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+                                @*Remember Me*@
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" asp-for="RememberMe" class="form-check-input" />
+                                    <label class="form-check-label" asp-for="RememberMe"><b>Remember Me?</b></label>
+                                </div>
+
+                                @*Button Submit*@
+
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        Not Registered? <a asp-controller="Register" asp-action="Index"><br />Register</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 ">
+
+                <!-- MAIN (Center website) -->
+                <div class="main">
+
+
+
+                    <div id="myBtnContainer">
+                        <button class="btn active" onclick="filterSelection('all')">All Sections</button>
+                        <button class="btn" onclick="filterSelection('documentaries')"> Documentaries</button>
+                        <button class="btn" onclick="filterSelection('featured')"> Featured</button>
+                        <button class="btn" onclick="filterSelection('action')"> Action & Adventure</button>
+                    </div>
+
+                    <!-- Portfolio Gallery Grid -->
+                    <div class="myrow">
+                        <div class="column featured">
+                            <div class="content">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/featured/img1.jpg" style="width:100%">
+                                </a>
+                                <h4>Money Heist</h4>
+                            </div>
+                        </div>
+                        <div class="column featured">
+                            <div class="content">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/featured/img2.jpg" style="width:100%">
+                                </a>
+                                <h4>Friends</h4>
+                            </div>
+                        </div>
+                        <div class="column featured">
+                            <div class="content">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/featured/img3.jpg" style="width:100%">
+                                </a>
+                                <h4>Lucifer</h4>
+                            </div>
+                        </div>
+
+                        <div class="column action">
+                            <div class="content">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/action/img1.jpg" style="width:100%">
+                                </a>
+                                <h4>Narcos</h4>
+                            </div>
+                        </div>
+                        <div class="column action">
+                            <div class="content">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/action/img2.jpg" alt="Mountains" style="width:100%">
+                                </a>
+                                <h4>Betaal</h4>
+                            </div>
+                        </div>
+                        <div class="column action">
+                            <div class="content">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/action/img3.jpg" alt="Mountains" style="width:100%">
+                                </a>
+                                <h4>Bare of Blood</h4>
+                            </div>
+                        </div>
+
+                        <div class="column documentaries">
+                            <div class="content">
+
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/documentaries/img1.jpg" alt="Mountains" style="width:100%">
+                                </a>
+                                <h4>Our Planet</h4>
+                            </div>
+                        </div>
+                        <div class="column documentaries">
+                            <div class="content">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <img src="~/images/documentaries/img2.jpg" alt="Mountains" style="width:100%">
+                                </a>
+                                <h4>Fear City</h4>
+                            </div>
+                        </div>
+
+                        <!-- END GRID -->
+                    </div>
+
+                    <!-- END MAIN -->
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>

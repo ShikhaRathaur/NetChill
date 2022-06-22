@@ -1,0 +1,137 @@
+@model netchill.Model.SuperuserEvent
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<div class="card">
+    <div class="card-body">
+        <form method="post" asp-action="Create">
+            <div class="border p-3">
+                @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+                <div class="form-group row">
+                    <h2 class="text-black-50 pl-3">Add Movie/Series</h2>
+                </div>
+                <div class="row">
+                    <div class="mt-3 col-12">
+                        <div class="form-group row">
+                            <div class="col-3">
+                                <label asp-for="Name"> Content Name</label>
+                            </div>
+
+                            <div class="col-3">
+                                <label asp-for="Availability_Starts"> Availability Starts</label>
+                            </div>
+
+                            <div class="col-3">
+                                <label asp-for="Year_of_Release">Year of Release</label>
+                            </div>
+
+                            <div class="col-3">
+                                <label asp-for="Category"> Add Select here for category</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-3">
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-3">
+                                <input asp-for="Availability_Starts" class="form-control" />
+                                <span asp-validation-for="Availability_Starts" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-3">
+                                <input asp-for="Year_of_Release" class="form-control" />
+                                <span asp-validation-for="Year_of_Release" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-3">
+
+
+                                <select asp-for="Category" asp-validation-for="Category" class="form-control-sm">
+                                    <option value="Public">Action</option>
+                                    <option value="Private">Sci-fi</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="mt-3 col-12">
+                            <div class="form-group row">
+
+                                <div class="col-3">
+                                    <label asp-for="Description"></label>
+                                </div>
+
+                                <div class="col-3">
+                                    <label asp-for="IsFeatured"></label>
+                                </div>
+
+
+                                <div class="col-3">
+                                    <label asp-for="Movie_Poster_Path"></label>
+                                </div>
+
+                                <div class="col-3">
+                                    <label asp-for="Content_Path"></label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <div class="col-4">
+                                    <input asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="col-4">
+                                    <input asp-for="IsFeatured" class="form-control" />
+                                    <span asp-validation-for="IsFeatured" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-4">
+                                    <input asp-for="Movie_Poster_Path" class="form-control" />
+                                    <span asp-validation-for="Movie_Poster_Path" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-4">
+                                    <input asp-for="Content_Path" class="form-control" />
+                                    <span asp-validation-for="Content_Path" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <div>
+                        <input asp-for="Id" type="hidden" value=@UserManager.GetUserName(User)>
+                    </div>
+
+                }
+
+                <div class="mt-4 row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="update" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

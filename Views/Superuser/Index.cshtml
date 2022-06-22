@@ -1,0 +1,86 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<IdentityUser>
+@{
+    ViewBag.Title = "Registered Users";
+}
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-8">
+            <h2 class="text-primary">REGISTERED USERS</h2>
+        </div>
+    
+
+   <!--
+    <div class="col-2 text-right">
+            <a asp-controller="Superuser" asp-action="Create" class="btn btn-success">Add Content</a>
+        </div>
+
+    <div class="col-2 text-right">
+            <a asp-controller="Logout" asp-action="Index" class="btn btn-success">Logout</a>
+        </div>
+   
+        -->
+    </div>
+    <br />
+
+    
+
+@if (Model.Any())
+{
+    foreach (var user in Model)
+    {
+
+        <div class="row">
+
+            <div class="col-5">
+                 <div class="card mb-3">
+            <div class="card-header">
+                User Id : @user.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@user.UserName</h5>
+            </div>
+            <div class="card-footer">
+                <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
+                        
+                        <button type="submit" class="btn-danger">Revoke Subscription</button>
+                        
+
+                </form>
+            </div>
+        </div>
+            </div>
+
+        </div>
+       
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No users created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create a user
+            </h5>
+            <a class="btn btn-primary" style="width:auto"
+               asp-controller="Superuser" asp-action="Index">
+                Add new user
+            </a>
+        </div>
+    </div>
+}
+
+
+</div>
+
+
+@section Scripts {
+    
+    
+}
